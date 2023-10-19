@@ -1,7 +1,7 @@
-const { DataType, DataTypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const sequelize = require("./db");
-//Define the restaurant model
-const Restaurant = sequelize.define("re", {
+
+const Restaurant = sequelize.define("res", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -32,11 +32,11 @@ const Restaurant = sequelize.define("re", {
 });
 
 // คำสั่งการสร้างตารางเมื่อไม่มีตารางนั้นจะสร้างขึ้นมาให้ 
-// Restaurant.sync({force:false}).then(()=>{
+// Restaurant.sync({ force: true }).then(() => {
 //     console.log("Table created or already exists");
 // })
-// .catch((error) => {
-//     console.error("error creating table:", error);
-// });
+//     .catch((error) => {
+//         console.error("error creating table:", error);
+//     });
 
 module.exports = Restaurant;

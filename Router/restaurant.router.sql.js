@@ -107,28 +107,6 @@ router.put("/restaurant/:id", (req, res) => {
             res.status(200).json({message:result.message})
         }
     );
-    // const newRestaurant = new Restaurant({
-    //     name: req.body.name,
-    //     type: req.body.type,
-    //     img: req.body.img
-    // })
-
-    // Restaurant.updateById(restaurantId, newRestaurant, (err, data)=>{
-    //     if(err){
-    //         if(err.kind === "not_found"){
-    //             res.status(400).send({
-    //                 message: "Restaurant not found with this id: " + restaurantId
-    //             });
-    //         }else{
-    //             res.status(500).send({
-    //                 message: 
-    //                 err.message || "Some error occurred while deleting the restaurant."
-    //             });
-    //         }
-    //     }else{
-    //         res.status(200).send(data);
-    //     }
-    // })
 })
 
 

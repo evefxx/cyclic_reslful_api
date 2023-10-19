@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const Restaurant = require("../controllers/restaurant.controller")
+const Restaurant = require("../controllers/restaurant.controller");
+const {authJWt} = require("../middleware");
 
 //Create a new restaurant
 //http://localhost:5000/res
@@ -25,8 +26,9 @@ router.get("/res", async (req, res) => {
     }
 });
 
-//get byId
-router.get("/res/:id", async (req, res) => {
+//get byId 
+//16 test แก้
+router.get("/res/:id",[authJWt.verifyToken], async (req, res) => {
     try {
         const restaurantId = req.params.id;
         const restaurant = await Restaurant.getOne(restaurantId);
@@ -42,7 +44,7 @@ router.get("/res/:id", async (req, res) => {
 });
 
 //update
-router.put("/res/:id", async (req, res) => {
+router.put("/res/:id",[authJWt.verifyToken, authJWt.isAdmin], async (req, res) => {
     try {
         const restaurantId = req.params.id;
         const updates = req.body;
@@ -58,7 +60,7 @@ router.put("/res/:id", async (req, res) => {
 });
 
 //delete
-router.delete("/res/:id", async (req, res) => {
+router.delete("/res/:id",[authJWt.verifyToken, authJWt.isAdmin], async (req, res) => {
     try {
         const restaurantId = req.params.id;
         const deletedRestaurant = await Restaurant.Delete(restaurantId);
